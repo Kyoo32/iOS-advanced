@@ -53,7 +53,7 @@
                                       else
                                       {
                                           NSString *result = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
-                                          NSLog(@"%@", result);
+                                          //NSLog(@"%@", result);
                                           [self showAlertWithMessage:[result substringToIndex:200]];
                                       }
                                   }];
@@ -81,11 +81,19 @@
 
 -(void)showAlertWithMessage:(NSString*)message{
     dispatch_async(dispatch_get_main_queue(), ^{
+        /* deprecated
         [[[UIAlertView alloc] initWithTitle:@"Result data"
                                     message:message
                                    delegate:nil
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil, nil] show];
+         */
+       UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Result Data"
+                                                                                        message:message
+                                                                                        preferredStyle:1];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Done" style:0 handler:^(UIAlertAction * _Nonnull action) {}]];
+        [self presentViewController:alert animated:YES completion:nil];
+        
     });
 }
 
