@@ -11,6 +11,7 @@
 @interface NSString (Encoding)
 -(NSString*)urlEncode;
 -(NSArray*)koreanWords;
+-(NSArray*)koreanWordsFromOneString;
 
 @end
 

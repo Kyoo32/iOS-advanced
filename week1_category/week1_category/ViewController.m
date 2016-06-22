@@ -14,7 +14,9 @@
 @end
 
 @implementation ViewController
+
 - (IBAction)getData:(id)sender {
+    
     NSString *original = @"http://www.osxdev.org/forum/index.php?threads/";
     NSString *param = @"ios8-에서-webgl-지원.356/";
     NSString *encoded = [param urlEncode];
@@ -27,7 +29,6 @@
     NSOperationQueue *queue = [NSOperationQueue mainQueue];
     [NSURLConnection sendAsynchronousRequest:urlRequest queue:queue completionHandler:^(NSURLResponse *response, NSData *data, NSError *error)
     {
-
         if (error)
         {
         }
@@ -38,19 +39,16 @@
             [self showAlertWithMessage:result];
         }
     }];
-
-    
 }
+
+
 - (IBAction)getKorean:(id)sender {
     NSString *longOriginal = @"http://www.osxdev.org/forum/index.php?threads/swift-2-0에서-try-catch로-fatal-error-잡을-수-있나요.382/" ;
-    
-    NSLog(@"%@", [longOriginal koreanWords]);
+    NSLog(@"%@", [longOriginal koreanWordsFromOneString]);
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-   
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -59,14 +57,12 @@
 }
 
 -(void)showAlertWithMessage:(NSString*)message{
-    
     dispatch_async(dispatch_get_main_queue(), ^{
         [[[UIAlertView alloc] initWithTitle:@"Result data"
                                     message:message
                                    delegate:nil
                           cancelButtonTitle:@"OK"
                           otherButtonTitles:nil, nil] show];
-        
     });
 }
 
