@@ -42,7 +42,7 @@
     
 }
 - (IBAction)getKorean:(id)sender {
-    NSString *longOriginal = @"http://www.osxdev.org/forum/index.php?threads/swift-2-0에서-try-catch-fatal-error-잡을-수-있나요.382/" ;
+    NSString *longOriginal = @"http://www.osxdev.org/forum/index.php?threads/swift-2-0에서-try-catch로-fatal-error-잡을-수-있나요.382/" ;
     
     NSLog(@"%@", [longOriginal koreanWords]);
 }
