@@ -21,9 +21,8 @@
     NSString *param = @"ios8-에서-webgl-지원.356/";
     NSString *encoded = [param urlEncode];
     original = [original stringByAppendingString:encoded];
-    NSLog(@" %@", original);
-    
-   
+  
+/* from NSConnention
     NSURL *url = [NSURL URLWithString:original];
     NSURLRequest *urlRequest = [NSURLRequest requestWithURL:url];
     NSOperationQueue *queue = [NSOperationQueue mainQueue];
@@ -39,6 +38,30 @@
             [self showAlertWithMessage:result];
         }
     }];
+*/ // NSSession
+    
+    NSURL *URL = [NSURL URLWithString:original];
+    NSURLRequest *request = [NSURLRequest requestWithURL:URL];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                      if (error)
+                                      {
+                                      }
+                                      else
+                                      {
+                                          NSString *result = [[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+                                          NSLog(@"%@", result);
+                                          [self showAlertWithMessage:[result substringToIndex:200]];
+                                      }
+                                  }];
+    
+    [task resume];
+    //more reference(1) - https://developer.apple.com/library/ios/documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html#//apple_ref/doc/uid/10000165i
+    //(2) - https://www.objc.io/issues/5-ios7/from-nsurlconnection-to-nsurlsession/
+    
 }
 
 

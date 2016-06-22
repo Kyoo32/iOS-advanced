@@ -22,6 +22,7 @@
 }
 
 
+
 -(NSArray*)koreanWords{
     NSArray *compo = [[self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] componentsSeparatedByCharactersInSet:[NSCharacterSet characterSetWithCharactersInString:@"/-.\\"]];
     //NSLog(@"%@", compo);
