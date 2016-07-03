@@ -14,6 +14,7 @@
 		CE1F6DF01D2921E400CC132D /* FlickrSearchUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F6DEF1D2921E400CC132D /* FlickrSearchUITests.swift */; };
 		CE1F6DFB1D29244F00CC132D /* FlickrPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F6DFA1D29244F00CC132D /* FlickrPhotosViewController.swift */; };
 		CE1F6DFD1D2925A800CC132D /* FlickrSearcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F6DFC1D2925A800CC132D /* FlickrSearcher.swift */; };
+		CE1F6DFF1D29370E00CC132D /* FlickrPhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F6DFE1D29370E00CC132D /* FlickrPhotoCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		CE1F6DF11D2921E400CC132D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE1F6DFA1D29244F00CC132D /* FlickrPhotosViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrPhotosViewController.swift; sourceTree = "<group>"; };
 		CE1F6DFC1D2925A800CC132D /* FlickrSearcher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrSearcher.swift; sourceTree = "<group>"; };
+		CE1F6DFE1D29370E00CC132D /* FlickrPhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickrPhotoCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +84,7 @@
 				CE1F6DDA1D2921E400CC132D /* AppDelegate.swift */,
 				CE1F6DFC1D2925A800CC132D /* FlickrSearcher.swift */,
 				CE1F6DFA1D29244F00CC132D /* FlickrPhotosViewController.swift */,
+				CE1F6DFE1D29370E00CC132D /* FlickrPhotoCell.swift */,
 				CE1F6DDE1D2921E400CC132D /* Main.storyboard */,
 				CE1F6DE11D2921E400CC132D /* Assets.xcassets */,
 				CE1F6DE31D2921E400CC132D /* LaunchScreen.storyboard */,
@@ -201,6 +204,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE1F6DFD1D2925A800CC132D /* FlickrSearcher.swift in Sources */,
+				CE1F6DFF1D29370E00CC132D /* FlickrPhotoCell.swift in Sources */,
 				CE1F6DFB1D29244F00CC132D /* FlickrPhotosViewController.swift in Sources */,
 				CE1F6DDB1D2921E400CC132D /* AppDelegate.swift in Sources */,
 			);

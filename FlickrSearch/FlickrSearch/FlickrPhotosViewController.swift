@@ -38,6 +38,29 @@ extension FlickrPhotosViewController : UITextFieldDelegate {
     }
 }
 
+
+extension FlickrPhotosViewController : UICollectionViewDelegateFlowLayout{
+    func collectionView(collectionView: UICollectionView,
+    layout collectionViewLayout: UICollectionViewLayout,
+           sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        let flickerPhoto = photoForIndexPath(indexPath)
+        
+        if var size = flickerPhoto.thumbnail?.size {
+            size.width += 10
+            size.height += 10
+            return size
+        }
+        return CGSize(width: 100, height: 100)
+    }
+    
+    func collectionView(collectionView: UICollectionView,
+                          layout collectionViewLayout: UICollectionViewLayout,
+                                 insetForSectionAtIndex section: Int) -> UIEdgeInsets{
+     
+        return sectionInsets
+    }
+}
+
 class FlickrPhotosViewController: UICollectionViewController {
     
     private var searches = [FlickrSearchResults]()
@@ -56,7 +79,7 @@ class FlickrPhotosViewController: UICollectionViewController {
         // self.clearsSelectionOnViewWillAppear = false
 
         // Register cell classes
-        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
+        //self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
         // Do any additional setup after loading the view.
     }
@@ -79,21 +102,19 @@ class FlickrPhotosViewController: UICollectionViewController {
     // MARK: UICollectionViewDataSource
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        return searches.count
     }
-
-
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
+    
+    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
+    {
+        return searches[section].searchResults.count
     }
-
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
     
-        // Configure the cell
-    
+    override func  collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! FlickrPhotoCell
+        let curFlickrPhoto = photoForIndexPath(indexPath)
+        cell.backgroundColor = UIColor.blackColor()
+        cell.imageView.image = curFlickrPhoto.thumbnail
         return cell
     }
 
