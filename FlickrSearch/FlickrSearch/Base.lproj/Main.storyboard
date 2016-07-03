@@ -86,11 +86,16 @@
                                 <outlet property="delegate" destination="qaQ-eY-1B9" id="SsW-6T-KbZ"/>
                             </connections>
                         </textField>
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="dWN-mw-alR">
+                            <connections>
+                                <action selector="share:" destination="qaQ-eY-1B9" id="ulq-BO-PwS"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="033-AL-QoW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1335" y="349"/>
+            <point key="canvasLocation" x="1132" y="329"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="dXk-oT-vW2">

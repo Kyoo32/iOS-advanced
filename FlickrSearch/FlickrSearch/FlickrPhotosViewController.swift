@@ -78,6 +78,52 @@ class FlickrPhotosViewController: UICollectionViewController {
     private var searches = [FlickrSearchResults]()
     private let flickr = Flickr()
     
+    //for sharing
+    private var selectedPhotos = [FlickrPhoto]()
+    private let shareTextLabel = UILabel()
+    
+    func updateSharedPhotoCount() {
+        shareTextLabel.textColor = themeColor
+        shareTextLabel.text = "\(selectedPhotos.count) photos selected"
+        shareTextLabel.sizeToFit()
+    }
+    
+    var sharing : Bool = false {
+        didSet {
+            collectionView?.allowsMultipleSelection = sharing
+            collectionView?.selectItemAtIndexPath(nil, animated: true, scrollPosition: .None)
+            selectedPhotos.removeAll(keepCapacity: false)
+            if sharing && largePhotoIndexPath != nil {
+                largePhotoIndexPath = nil
+            }
+
+            let shareButton =
+                self.navigationItem.rightBarButtonItems!.first
+            if sharing {
+                updateSharedPhotoCount()
+                let sharingDetailItem = UIBarButtonItem(customView: shareTextLabel)
+                navigationItem.setRightBarButtonItems([shareButton!,sharingDetailItem], animated: true)
+            }
+            else {
+                navigationItem.setRightBarButtonItems([shareButton!], animated: true)
+            }
+        }
+    }
+    
+    @IBAction func share(sender: AnyObject) {
+        if searches.isEmpty {
+            return
+        }
+        
+        if !selectedPhotos.isEmpty {
+           
+        }
+        
+        sharing = !sharing
+    }
+    
+    
+    //for tapping a photo
     var largePhotoIndexPath : NSIndexPath? { //use when user taps a photo
         didSet {
             var indexPaths = [NSIndexPath]()
@@ -214,6 +260,10 @@ class FlickrPhotosViewController: UICollectionViewController {
     
     override func collectionView(collectionView: UICollectionView,
                                  shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if sharing {
+            return true
+        }
+        
         if largePhotoIndexPath == indexPath {
             largePhotoIndexPath = nil
         }
@@ -221,6 +271,25 @@ class FlickrPhotosViewController: UICollectionViewController {
             largePhotoIndexPath = indexPath
         }
         return false
+    }
+    
+    override func collectionView(collectionView: UICollectionView,
+                                 didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        if sharing {
+            let photo = photoForIndexPath(indexPath)
+            selectedPhotos.append(photo)
+            updateSharedPhotoCount()
+        }
+    }
+    
+    override func collectionView(collectionView: (UICollectionView!),
+                                 didDeselectItemAtIndexPath indexPath: (NSIndexPath!)) {
+        if sharing {
+            if let foundIndex = selectedPhotos.indexOf(photoForIndexPath(indexPath)) {
+                selectedPhotos.removeAtIndex(foundIndex)
+                updateSharedPhotoCount()
+            }
+        }
     }
 
     /*
