@@ -67,7 +67,7 @@
                                 <constraint firstItem="es9-D6-sjl" firstAttribute="centerX" secondItem="LvJ-0V-ZeB" secondAttribute="centerX" id="T8W-rD-LoA"/>
                             </constraints>
                             <connections>
-                                <outlet property="label" destination="es9-D6-sjl" id="nVn-aj-wxm"/>
+                                <outlet property="label" destination="es9-D6-sjl" id="qto-nS-2fE"/>
                             </connections>
                         </collectionReusableView>
                         <connections>

@@ -148,18 +148,17 @@ class FlickrPhotosViewController: UICollectionViewController {
         }
     }
     
-    
     func photoForIndexPath(indexPath: NSIndexPath) -> FlickrPhoto {
         return searches[indexPath.section].searchResults[indexPath.row]
     }
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
+        // 커스텀 셀 사용을 위해 지워주세요.
         // Register cell classes
         //self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
 
@@ -285,6 +284,13 @@ class FlickrPhotosViewController: UICollectionViewController {
     override func collectionView(collectionView: (UICollectionView!),
                                  didDeselectItemAtIndexPath indexPath: (NSIndexPath!)) {
         if sharing {
+            
+            /*
+             - find 사용할 수 없습니다.
+              let index = find(tempBundleList, themeBundleEntity!)
+             - 아래와 같이 바꿔 쓰세요. 
+              let index = tempBundleList.indexOf(themeBundleEntity!)
+             */
             if let foundIndex = selectedPhotos.indexOf(photoForIndexPath(indexPath)) {
                 selectedPhotos.removeAtIndex(foundIndex)
                 updateSharedPhotoCount()

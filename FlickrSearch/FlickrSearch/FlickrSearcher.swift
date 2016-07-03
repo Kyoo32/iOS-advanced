@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 let apiKey = "736f02a012e8336d69b41f998090e3a6"
-
+//https://www.flickr.com/services/api/explore/?method=flickr.photos.search 에서 apikey 얻어오기
 struct FlickrSearchResults {
   let searchTerm : String
   let searchResults : [FlickrPhoto]
@@ -98,17 +98,13 @@ class Flickr {
         return
       }
       
-//      var JSONError : NSError?
-        var resultsDictionary : NSDictionary?
-        do {
-             resultsDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions(rawValue: 0)) as? NSDictionary
-        } catch _ {
-            resultsDictionary = nil
-        }
-//      if JSONError != nil {
-//        completion(results: nil, error: JSONError)
-//        return
-//      }
+    var resultsDictionary : NSDictionary?
+    do {
+         resultsDictionary = try NSJSONSerialization.JSONObjectWithData(data!, options:NSJSONReadingOptions(rawValue: 0)) as? NSDictionary
+    } catch _ {
+        resultsDictionary = nil
+    }
+
       
       switch (resultsDictionary!["stat"] as! String) {
       case "ok":
@@ -145,6 +141,7 @@ class Flickr {
       dispatch_async(dispatch_get_main_queue(), {
         completion(results:FlickrSearchResults(searchTerm: searchTerm, searchResults: flickrPhotos), error: nil)
       })
+        
     }
   }
   
