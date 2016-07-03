@@ -39,13 +39,24 @@ extension FlickrPhotosViewController : UITextFieldDelegate {
 }
 
 
+//layout 잡는 역할
 extension FlickrPhotosViewController : UICollectionViewDelegateFlowLayout{
     func collectionView(collectionView: UICollectionView,
     layout collectionViewLayout: UICollectionViewLayout,
            sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let flickerPhoto = photoForIndexPath(indexPath)
+        let flickrPhoto = photoForIndexPath(indexPath)
         
-        if var size = flickerPhoto.thumbnail?.size {
+        //when tapping
+        if indexPath == largePhotoIndexPath {
+            var size = collectionView.bounds.size
+            size.height -= topLayoutGuide.length
+            size.height -= (sectionInsets.top + sectionInsets.right)
+            size.width -= (sectionInsets.left + sectionInsets.right)
+            return flickrPhoto.sizeToFillWidthOfSize(size)
+        }
+        
+        //normal state
+        if var size = flickrPhoto.thumbnail?.size {
             size.width += 10
             size.height += 10
             return size
@@ -56,21 +67,46 @@ extension FlickrPhotosViewController : UICollectionViewDelegateFlowLayout{
     func collectionView(collectionView: UICollectionView,
                           layout collectionViewLayout: UICollectionViewLayout,
                                  insetForSectionAtIndex section: Int) -> UIEdgeInsets{
-     
         return sectionInsets
     }
 }
+
+
 
 class FlickrPhotosViewController: UICollectionViewController {
     
     private var searches = [FlickrSearchResults]()
     private let flickr = Flickr()
     
+    var largePhotoIndexPath : NSIndexPath? { //use when user taps a photo
+        didSet {
+            var indexPaths = [NSIndexPath]()
+            if largePhotoIndexPath != nil {
+                indexPaths.append(largePhotoIndexPath!)
+            }
+            if oldValue != nil {
+                indexPaths.append(oldValue!)
+            }
+            collectionView?.performBatchUpdates({
+                self.collectionView?.reloadItemsAtIndexPaths(indexPaths)
+                return
+            }){
+                completed in
+                if self.largePhotoIndexPath != nil {
+                    self.collectionView?.scrollToItemAtIndexPath(
+                        self.largePhotoIndexPath!,
+                        atScrollPosition: .CenteredVertically,
+                        animated: true)
+                }
+            }
+        }
+    }
+    
+    
     func photoForIndexPath(indexPath: NSIndexPath) -> FlickrPhoto {
         return searches[indexPath.section].searchResults[indexPath.row]
     }
 
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -111,14 +147,81 @@ class FlickrPhotosViewController: UICollectionViewController {
     }
     
     override func  collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! FlickrPhotoCell
-        let curFlickrPhoto = photoForIndexPath(indexPath)
+        let cell :FlickrPhotoCell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath) as! FlickrPhotoCell
+        let flickrPhoto = photoForIndexPath(indexPath)
+        
+        //셀을 재사용하기 위해, 전 행동의 애니메이션을 기본값(멈춤)으롤 바꾼다
+        cell.activityIndicator.stopAnimating()
+        
+        //normal state
+        if indexPath != largePhotoIndexPath {
+            cell.imageView.image = flickrPhoto.thumbnail
+            return cell
+        }
+        
+        //탭해서 큰 사진 본 적이 있는 혹은 큰 사이즈가 로딩된 사진이라면, 큰 사진으로 보여준다
+        if flickrPhoto.largeImage != nil {
+            cell.imageView.image = flickrPhoto.largeImage
+            return cell
+        }
+        
+        //큰 사이즈가 로딩되기 전일때, 기본 섬네일 보여주기
+        cell.imageView.image = flickrPhoto.thumbnail
+        cell.activityIndicator.startAnimating()
+        
+        //탭하는 과정
+        flickrPhoto.loadLargeImage {
+            loadedFlickrPhoto, error in
+            //로딩이 완료됐을 때
+            cell.activityIndicator.stopAnimating()
+            
+            if error != nil {
+                return
+            }
+            if loadedFlickrPhoto.largeImage == nil {
+                return
+            }
+            if indexPath == self.largePhotoIndexPath {
+                if let cell = collectionView.cellForItemAtIndexPath(indexPath) as? FlickrPhotoCell {
+                    cell.imageView.image = loadedFlickrPhoto.largeImage
+                }
+            }
+        }
         cell.backgroundColor = UIColor.blackColor()
-        cell.imageView.image = curFlickrPhoto.thumbnail
+        cell.imageView.image = flickrPhoto.thumbnail
         return cell
+        
     }
 
+    //for header - similar to cellForItemAtIndexPath!
+    override func collectionView(collectionView: UICollectionView,
+                                 viewForSupplementaryElementOfKind kind: String,
+                                                                   atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionElementKindSectionHeader:
+            let headerView =
+                collectionView.dequeueReusableSupplementaryViewOfKind(kind,
+                                                                      withReuseIdentifier: "FlickrPhotoHeaderView",
+                                                                      forIndexPath: indexPath)
+                    as! FlickrPhotoHeaderView
+            headerView.label.text = searches[indexPath.section].searchTerm
+            return headerView
+        default:
+            assert(false, "Unexpected element kind")
+        }
+    }
     // MARK: UICollectionViewDelegate
+    
+    override func collectionView(collectionView: UICollectionView,
+                                 shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
+        if largePhotoIndexPath == indexPath {
+            largePhotoIndexPath = nil
+        }
+        else {
+            largePhotoIndexPath = indexPath
+        }
+        return false
+    }
 
     /*
     // Uncomment this method to specify if the specified item should be highlighted during tracking

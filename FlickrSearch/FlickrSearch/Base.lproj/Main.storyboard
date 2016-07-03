@@ -15,13 +15,13 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ooM-67-VS0">
                             <size key="itemSize" width="200" height="200"/>
-                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                            <size key="headerReferenceSize" width="50" height="90"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="FlickrCell" id="YJl-ah-fjg" customClass="FlickrPhotoCell" customModule="FlickrSearch" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="64" width="200" height="200"/>
+                                <rect key="frame" x="0.0" y="154" width="200" height="200"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                     <rect key="frame" x="0.0" y="0.0" width="200" height="200"/>
@@ -30,20 +30,46 @@
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="v5j-DY-B0O">
                                             <rect key="frame" x="5" y="5" width="190" height="190"/>
                                         </imageView>
+                                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="uYF-CQ-dQq">
+                                            <rect key="frame" x="82" y="82" width="37" height="37"/>
+                                        </activityIndicatorView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
+                                    <constraint firstItem="uYF-CQ-dQq" firstAttribute="centerX" secondItem="YJl-ah-fjg" secondAttribute="centerX" id="7fg-Pt-cbT"/>
                                     <constraint firstAttribute="trailing" secondItem="v5j-DY-B0O" secondAttribute="trailing" constant="5" id="8CJ-nX-UU4"/>
                                     <constraint firstItem="v5j-DY-B0O" firstAttribute="top" secondItem="YJl-ah-fjg" secondAttribute="top" constant="5" id="SzI-Wg-1BP"/>
                                     <constraint firstAttribute="bottom" secondItem="v5j-DY-B0O" secondAttribute="bottom" constant="5" id="VtN-Lb-VFh"/>
                                     <constraint firstItem="v5j-DY-B0O" firstAttribute="leading" secondItem="YJl-ah-fjg" secondAttribute="leading" constant="5" id="ilc-6c-vQT"/>
+                                    <constraint firstItem="uYF-CQ-dQq" firstAttribute="centerY" secondItem="YJl-ah-fjg" secondAttribute="centerY" id="p7J-jn-r8x"/>
                                 </constraints>
                                 <connections>
+                                    <outlet property="activityIndicator" destination="uYF-CQ-dQq" id="KL2-lN-z02"/>
                                     <outlet property="imageView" destination="v5j-DY-B0O" id="iBy-Z9-UP8"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
+                        <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.90000000000000002" contentMode="center" reuseIdentifier="FlickrPhotoHeaderView" id="LvJ-0V-ZeB" customClass="FlickrPhotoHeaderView" customModule="FlickrSearch" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="64" width="600" height="90"/>
+                            <autoresizingMask key="autoresizingMask"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="es9-D6-sjl">
+                                    <rect key="frame" x="261" y="26" width="78" height="39"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstItem="es9-D6-sjl" firstAttribute="centerY" secondItem="LvJ-0V-ZeB" secondAttribute="centerY" id="LNW-vc-GPs"/>
+                                <constraint firstItem="es9-D6-sjl" firstAttribute="centerX" secondItem="LvJ-0V-ZeB" secondAttribute="centerX" id="T8W-rD-LoA"/>
+                            </constraints>
+                            <connections>
+                                <outlet property="label" destination="es9-D6-sjl" id="nVn-aj-wxm"/>
+                            </connections>
+                        </collectionReusableView>
                         <connections>
                             <outlet property="dataSource" destination="qaQ-eY-1B9" id="AX5-te-MuD"/>
                             <outlet property="delegate" destination="qaQ-eY-1B9" id="PZD-i9-QMl"/>
