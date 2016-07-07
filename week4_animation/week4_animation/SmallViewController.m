@@ -17,24 +17,22 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    //NSLog(@" hello ");
     
-    
-    UIImageView *lithuaniaView =[[UIImageView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y , self.view.frame.size.width, self.view.frame.size.height)];
-    lithuaniaView.contentMode = UIViewContentModeScaleAspectFit;
-    //lithuaniaView.contentMode = UIViewContentModeScaleAspectFit;
-    lithuaniaView.image = [UIImage imageNamed:@"lithu.jpg"];
+    UIImageView *lithuaniaView =[[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 375 , 100)];
+    lithuaniaView.contentMode = UIViewContentModeScaleAspectFill;
+    lithuaniaView.clipsToBounds = YES;
+    UIImage *lithuania = [UIImage imageNamed:@"lithu.jpg"];
+    lithuaniaView.image = lithuania;
     [self.view addSubview:lithuaniaView];
 
-    float width = self.view.bounds.origin.x + (self.view.frame.size.width / 2) - 40;
-    float height = self.view.bounds.origin.y + (self.view.frame.size.height / 2) - 20;
+    float xPosition = self.view.frame.origin.x + self.view.frame.size.width/2 - 40;
+    float yPosition = self.view.frame.origin.y + 30;
     UIButton *back = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [back setFrame:CGRectMake(self.view.bounds.origin.x + 10,  self.view.bounds.origin.y + 30, 80, 40)];
+    [back setFrame:CGRectMake(xPosition,  yPosition, 80, 40)];
+    [back setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [back setTitle: @"back" forState:UIControlStateNormal];
     [back addTarget:self action:@selector(goBackToOrigin) forControlEvents:UIControlEventTouchUpInside];
-    //[back setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:back];
-    
 }
 
 - (void)didReceiveMemoryWarning {

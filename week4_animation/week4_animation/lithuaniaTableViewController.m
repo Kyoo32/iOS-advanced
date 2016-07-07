@@ -17,7 +17,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -59,7 +58,6 @@
 
 - (void)animateTransition:(id<UIViewControllerContextTransitioning>)transitionContext{
     
-    NSLog(@" no 1");
     // Grab the from and to view controllers from the context
     UIViewController *fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController *toViewController = [transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
@@ -69,7 +67,6 @@
     CGRect endFrame = CGRectMake(0, 164, originWidth, 100);
     
     if (self.presenting) {
-        NSLog(@" no 2");
         fromViewController.view.userInteractionEnabled = NO;
         
         [transitionContext.containerView addSubview:fromViewController.view];
@@ -79,17 +76,15 @@
         startFrame.origin.x += originWidth;
         
         toViewController.view.frame = startFrame;
-        
         [UIView animateWithDuration:[self transitionDuration:transitionContext] animations:^{
             fromViewController.view.tintAdjustmentMode = UIViewTintAdjustmentModeDimmed;
             toViewController.view.frame = endFrame;
         } completion:^(BOOL finished) {
-             NSLog(@" no 2.f");
+            //toViewController로 이동후 fromViewController화면이 사라지는 현상이 나타나 추가한 코드
             [[UIApplication sharedApplication].keyWindow insertSubview:self.view atIndex:0];
             [transitionContext completeTransition:YES];
         }];
     } else {
-        NSLog(@" no 3");
         toViewController.view.userInteractionEnabled = YES;
         
         [transitionContext.containerView addSubview:toViewController.view];
@@ -101,7 +96,6 @@
             toViewController.view.tintAdjustmentMode = UIViewTintAdjustmentModeAutomatic;
             fromViewController.view.frame = endFrame;
         } completion:^(BOOL finished) {
-             NSLog(@" no 3.f");
             [transitionContext completeTransition:YES];
         }];
     }
@@ -111,9 +105,6 @@
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
                                                                   presentingController:(UIViewController *)presenting
                                                                       sourceController:(UIViewController *)source{
-    
-    
-    NSLog(@" no A");
     
     self.presenting = YES;
     return (id<UIViewControllerAnimatedTransitioning>)self;

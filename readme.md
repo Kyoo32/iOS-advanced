@@ -9,4 +9,8 @@
     last: up to Extracting korean words from the whole string, new version of Alert, from connection to session - 2016. 6. 22 16:00
 
 * [week2_xib&storyboard] <br />
-    1: basic mission - 2016. 6. 29 14:20 
+    1: basic mission - 2016. 6. 29 14:20
+
+* [wweek4_animation] <br />
+	1: backup - 2016. 7. 6 15:20
+	2: corrects small view position and contentMode  - 2016. 7. 7 18:40

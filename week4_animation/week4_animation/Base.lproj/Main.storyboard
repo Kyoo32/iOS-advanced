@@ -68,7 +68,6 @@
                     <view key="view" contentMode="scaleToFill" id="vgM-rR-3ZO">
                         <rect key="frame" x="0.0" y="0.0" width="300" height="100"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="92v-SU-ZVJ"/>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
