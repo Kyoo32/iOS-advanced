@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-let apiKey = "736f02a012e8336d69b41f998090e3a6"
+let apiKey = "6cb4f7bc8dc5f1706715723c313926e3"
 //https://www.flickr.com/services/api/explore/?method=flickr.photos.search 에서 apikey 얻어오기
 struct FlickrSearchResults {
   let searchTerm : String
