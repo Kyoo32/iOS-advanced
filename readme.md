@@ -14,3 +14,6 @@
 * [wweek4_animation] <br />
 	1: backup - 2016. 7. 6 15:20
 	2: corrects small view position and contentMode  - 2016. 7. 7 18:40
+
+* [wweek11_MCTackGame] <br />
+    1: MultiPeerConnectivity를 이용한 근거리 눈치게임 - 2016. 8. 24 14:35
