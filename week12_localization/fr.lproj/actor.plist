@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!--
-   actor.plist
-   week12_localization
-
-   Created by Lee Kyu-Won on 8/31/16.
-   Copyright (c) 2016 Lee Kyu-Won. All rights reserved.
--->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-    <dict>
-    
-    </dict>
+<array>
+	<dict>
+		<key>name</key>
+		<string>Marion Cotillard</string>
+		<key>imageName</key>
+		<string>marion.jpg</string>
+		<key>profile</key>
+		<string>Marion Cotillard Prononciation du titre dans sa version originale Écouter est une actrice française, née le 30 septembre 1975 à Paris.
+
+Active au cinéma depuis la fin des années 1990, elle est révélée au grand public par son rôle de Lilly Bertineau dans la saga Taxi de Luc Besson, qu&apos;elle incarnera dans les trois premiers films de la franchise. En 2004, elle reçoit la première des grandes récompenses qui vont jalonner sa carrière : le César de la meilleure actrice dans un second rôle, pour seulement huit minutes de présence à l&apos;écran dans le film Un long dimanche de fiançailles de Jean-Pierre Jeunet.</string>
+		<key>birthday</key>
+		<date>1975-09-29T15:00:00Z</date>
+	</dict>
+</array>
 </plist>

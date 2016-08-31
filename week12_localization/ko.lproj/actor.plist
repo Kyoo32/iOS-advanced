@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!--
-   actor.plist
-   week12_localization
-
-   Created by Lee Kyu-Won on 8/31/16.
-   Copyright (c) 2016 Lee Kyu-Won. All rights reserved.
--->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-    <dict>
-    
-    </dict>
+<array>
+	<dict>
+		<key>name</key>
+		<string>이제훈</string>
+		<key>imageName</key>
+		<string>이제훈.jpg</string>
+		<key>profile</key>
+		<string>이제훈(李帝勳[1], 1984년 7월 4일 ~ )은 대한민국의 배우이다. 서울특별시 종로구 효자동에서 태어나 6살 때부터 의정부시에서 살았다. 어려서 연극영화과를 가려했지만, 부모님의 반대로 고려대학교 세종캠퍼스에 입학하여 공학도의 길을 걸었다.[2] 하지만 2학년 때 중퇴했고, 2008년 한국예술종합학교 연극원 연기과에 입학했다.
+
+줄곧 단편영화와 독립영화계를 기웃거리다 2011년 《파수꾼》과 《고지전》 두 작품으로 자신의 존재를 충무로에 각인시켰고, 신인상 6관왕에 올랐다. 이후 영화 《건축학개론》, 《점쟁이들》, 《분노의 윤리학》, 《파파로티》에 주연으로 출연했고, 2012년부터 2014년까지 서울지방경찰청에서 의무경찰로 복무했다. 2014년 《비밀의 문》을 통해 복귀했고, SBS 연기대상에서 최우수상을 받았다. 2016년에는 《시그널》에 출연했고, 영화 복귀작인 《탐정 홍길동: 사라진 마을》이 개봉했다.</string>
+		<key>birthday</key>
+		<date>1984-06-03T15:00:00Z</date>
+	</dict>
+</array>
 </plist>

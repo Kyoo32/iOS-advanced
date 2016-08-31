@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!--
-   actor.plist
-   week12_localization
-
-   Created by Lee Kyu-Won on 8/31/16.
-   Copyright (c) 2016 Lee Kyu-Won. All rights reserved.
--->
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-    <dict>
-    
-    </dict>
+<array>
+	<dict>
+		<key>name</key>
+		<string>Natalie Portman</string>
+		<key>imageName</key>
+		<string>Natalie-Portman.jpg</string>
+		<key>profile</key>
+		<string>Natalie Portman is an actress, film producer and film director with dual American and Israeli citizenship. Her first role was in the 1994 action thriller Léon: The Professional, opposite Jean Reno.</string>
+		<key>birthday</key>
+		<date>1981-06-08T15:00:00Z</date>
+	</dict>
+</array>
 </plist>
