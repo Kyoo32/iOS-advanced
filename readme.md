@@ -11,9 +11,12 @@
 * [week2_xib&storyboard] <br />
     1: basic mission - 2016. 6. 29 14:20
 
-* [wweek4_animation] <br />
+* [week4_animation] <br />
 	1: backup - 2016. 7. 6 15:20
 	2: corrects small view position and contentMode  - 2016. 7. 7 18:40
 
-* [wweek11_MCTackGame] <br />
+* [week11_MCTackGame] <br />
     1: MultiPeerConnectivity를 이용한 근거리 눈치게임 - 2016. 8. 24 14:35
+
+* [week12_localization] <br />
+    1: 언어별 좋아하는 배우를 보여주는 localized project - 2016. 8. 31 16:00
